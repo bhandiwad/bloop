@@ -1,0 +1,102 @@
+You are an expert full-stack game developer and product designer who has shipped large real-time multiplayer web and mobile games.
+Build me a fully functional cross-platform web app (mobile-first PWA) called Bloop, based on the following spec summary:
+
+⸻
+
+🎮 Overview
+
+Bloop is a real-time, Psych-style bluff-and-guess party game where players submit fake answers, try to fool others, and guess the truth.
+It supports:
+	•	Classic decks (Word Up, Movie Bluff, True Lies, etc.)
+	•	Country decks (India, US, UK, Japan, Brazil …)
+	•	Game decks (Brawl Stars, Clash Royale, Minecraft …)
+	•	AI-generated fakes and a Family-Safe toggle
+
+⸻
+
+🧱 Core Requirements
+	•	Frontend:
+	•	React + Vite (responsive PWA).
+	•	TailwindCSS + Framer Motion for clean, fast UI.
+	•	Socket.io client for real-time updates.
+	•	Installable PWA manifest + service worker (Workbox).
+	•	Pages: Home, Create/Join Room, Lobby, Collect (answers), Vote, Reveal, Leaderboard, Settings.
+	•	Accessibility: font-scale, reduce-motion, high-contrast mode.
+	•	Backend:
+	•	Node.js + TypeScript (Fastify or Express).
+	•	Socket.io for real-time rooms.
+	•	PostgreSQL for persistent data.
+	•	Redis for ephemeral state (timers, rooms).
+	•	REST + WebSocket APIs: create/join room, start round, submit answer, vote, reveal, scoring.
+	•	JWT Auth (Firebase Auth / guest mode).
+	•	Modular services: Game Engine, Deck Service, Scoring Engine, Moderation Service, AI Service.
+	•	AI Integration:
+	•	If < N players, call LLM (OpenAI or local) to generate believable fake answers.
+	•	Rate-limit and moderate outputs before broadcast.
+	•	Optional: weekly auto-deck generation (“Auto-Bloop”).
+	•	Gameplay Logic:
+	•	Collect phase 25 s (12 s Rapid Fire), Vote 20 s, Reveal 6 s.
+	•	Scoring: Correct +2, Your Fake Chosen +1, Fool-All +2, Local Flair +1, Timeout –1.
+	•	Leaderboard after each round.
+	•	Family-Safe mode filters decks and answers.
+	•	Moderation & Safety:
+	•	Regex + locale blocklists + AI check.
+	•	Report flow for answers/players.
+	•	No public rooms by default.
+	•	Optional “Simple Mode” (hides chat/GIFs).
+	•	Content System:
+	•	Deck → Category → Prompt tables with i18n keys.
+	•	Seed ~300 prompts (120 Classic, 120 Country IN/US, 60 Brawl Stars).
+	•	JSON import format for future decks.
+	•	Translation table for multi-language support.
+	•	Deployment:
+	•	Dockerized services; PostgreSQL + Redis.
+	•	Cloudflare R2/S3 for assets.
+	•	CDN + HTTPS.
+	•	Basic CI/CD pipeline (GitHub Actions or Railway/Render deploy).
+	•	Analytics (PostHog/Mixpanel).
+
+⸻
+
+✅ MVP-1 Scope
+	1.	Mobile-first PWA (web and desktop).
+	2.	Create/join room, real-time collect → vote → reveal loop.
+	3.	Decks: Classic + India/US + Brawl Stars.
+	4.	AI fakes + basic moderation.
+	5.	Family-safe toggle, leaderboard, confetti animation.
+	6.	Analytics events for round funnel and deck usage.
+
+⸻
+
+📦 Deliverables
+	•	Full monorepo structure (client + server).
+	•	Database schema and migration SQL.
+	•	REST and Socket.io handlers.
+	•	Seed scripts for decks/prompts.
+	•	Docker Compose for local run.
+	•	Minimal UI kit + theme system.
+	•	README with setup and dev scripts.
+
+⸻
+
+🎨 Stretch (if time permits)
+	•	Offline support for rejoins.
+	•	Simple AI deck builder (admin only).
+	•	Shareable highlight screenshot after game.
+
+⸻
+
+Build in clear stages:
+1️⃣ Design DB schema & socket protocol.
+2️⃣ Implement backend services.
+3️⃣ Scaffold React PWA with socket hooks.
+4️⃣ Integrate decks + seed content.
+5️⃣ Add AI fakes & moderation.
+6️⃣ Polish UI + PWA manifest + analytics.
+7️⃣ Package Docker Compose & deployment guide.
+
+⸻
+
+⚙️ Goal: Generate production-ready code and configs so I can docker compose up and play Bloop locally with friends on mobile browsers.
+Provide source layout, commands, and sample .env values in output.
+Keep the code clean, commented, and modular for later App Store porting.
